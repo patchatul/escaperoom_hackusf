@@ -10,7 +10,7 @@ export default function QuizPopup({ visible, onSubmit }: QuizPopupProps) {
 
   return (
     <Html center>
-      <div className="bg-black/80 text-white p-6 rounded-xl w-[300px] space-y-4 border border-white/20">
+      <div className="bg-black/80 text-white p-6 rounded-xl w-75 space-y-4 border border-white/20">
         <h2 className="text-xl font-bold text-center">QUIZ QUESTION</h2>
 
         <p className="text-sm">What is written on the old book?</p>
