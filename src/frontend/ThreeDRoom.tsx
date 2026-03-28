@@ -1,14 +1,4 @@
 
-//3D room model
-function ThreeDRoom() {
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default ThreeDRoom
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { PointerLockControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";

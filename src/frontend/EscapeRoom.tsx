@@ -1,12 +1,120 @@
-
-import ThreeDRoom from './ThreeDRoom'
-//main component with background and renders the 3D room and all the pop ups and elements
+import { useEffect, useState } from "react";
+import ModelViewer from "./ThreeDRoom";
+const controls = [
+  { key: "Mouse", action: "look around" },
+  { key: "W", action: "move forward" },
+  { key: "S", action: "move backward" },
+  { key: "A", action: "move left" },
+  { key: "D", action: "move right" },
+  { key: "Esc", action: "show cursor" },
+];
 function EscapeRoom() {
+  const [showPopup, setShowPopup] = useState(true);
+  const [timerStart, setTimerStart] = useState(false);
+const totalTime = 120; //10 mins 600
+  const [timeLeft, setTimeLeft] = useState(totalTime);
+  // timer runs ONLY when timerStart is true
+useEffect(() => {
+  if (!timerStart) return;
+
+  const timer = setInterval(() => {
+    setTimeLeft((prev) => {
+      if (prev <= 0) {
+        clearInterval(timer);
+        return 0;
+      }
+      return prev - 1;
+    });
+  }, 1000);
+
+  return () => clearInterval(timer);
+}, [timerStart]);
+
+//start Let's go button
+  const handleStart = () => {
+    setShowPopup(false);
+    setTimerStart(true);
+  };
+ 
+
+
+  //set time format
+  const mins = Math.floor(timeLeft / 60);
+  const secs = timeLeft % 60;
+  const time = `${mins}:${secs.toString().padStart(2, "0")}`;
+  const progressPercent = (timeLeft / totalTime) * 100;
+  //effect -flash when less than 30 secs
+
+  //play sound
+  useEffect(() => {
+    const audio1 = new Audio("/eerie.mp3");
+    audio1.play();
+  }, []);
+  useEffect(() => {
+    const audio2 = new Audio("/tick.mp3");
+    audio2.loop = true;
+    audio2.play();
+
+    if (timeLeft <= 30) {
+      audio2.playbackRate = 1.5;
+    }
+    if (timeLeft == 0) {
+      audio2.pause();
+    }
+  }, []);
+
   return (
-    <div>
-      <ThreeDRoom />
+    <div className="relative w-full h-full">
+      {/* 3D ROOM */}
+      <ModelViewer />
+      {showPopup && (
+        <div className="fixed inset-0  flex items-center justify-center z-50">
+          <div className=" bg-[#7a0000]/50 p-8 rounded-2xl text-center space-y-6">
+            <h1 className="animate-flicker">
+              <span className="text-white">WELCOME TO</span>
+              <br />
+              ESCAPE ROOM
+            </h1>
+            <h2 className="font-['Nosifer'] text-2xl ">
+              Solve 5 Questions in 10 Minutes
+            </h2>
+
+            <div className="flex items-center justify-center gap-1 ">
+              {controls.map((c, i) => (
+                <div key={i} className="  bg-[#e8d8b0]/30 rounded-lg ">
+                  <p className="text-[#2de200] ">
+                    <span className="text-2xl ">{c.key}</span>
+                    <br />
+                    <span className="text-[#e8d8b0] ">{c.action}</span>
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <button onClick={handleStart}
+            className="w-[400px] py-2 bg-[#1c009a] hover:bg-[#25c400] font-bold rounded-lg transition">
+              LET'S GO
+            </button>
+          </div>
+        </div>
+      )}
+      {timerStart && 
+      <div>
+        <div
+          className="fixed top-4 left-1/2 -translate-x-1/2 z-50 
+             flex items-center gap-4"
+        >
+          <p className="font-bold text-2xl text-white float-start">{time}</p>
+          <div className="w-[600px] h-5 border-2 border-red rounded overflow-hidden">
+            <div
+              className="bg-red-700 h-full rounded transition-all duration-100"
+              style={{ width: `${progressPercent}%` }}
+            ></div>
+          </div>
+        </div>
+      </div>}
     </div>
-  )
+  );
 }
 
-export default EscapeRoom
+export default EscapeRoom;
