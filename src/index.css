@@ -78,19 +78,25 @@ input:hover, input:active{
   box-shadow: 1px 1px 10px 2px #2de200;
 }
 @layer utilities {
-    @keyframes flicker {
-    0%   { opacity: 0.95; filter: brightness(1); }
-    8%   { opacity: 0.8;  filter: brightness(1.4); }
-    15%  { opacity: 0.1;  filter: brightness(0.4); }
-    22%  { opacity: 0.9;  filter: brightness(1.1); }
-    32%  { opacity: 0.4;  filter: brightness(0.8); }
-    40%  { opacity: 0.3;  filter: brightness(0.4); }
-    56%  { opacity: 0.85; filter: brightness(1.5); }
-    70%  { opacity: 0.2;  filter: brightness(0.4); }
-    85%  { opacity: 0.9;  filter: brightness(1.2); }
-    100% { opacity: 0.95; filter: brightness(1); }
-  }
+   
+   @keyframes flicker {
+      0%, 25%, 30%, 65%, 69%, 100% {
+        opacity: 1;
+      }
+      26%, 66% {
+        opacity: 0.3;
+        
+      }
+      27%, 67% {
+        opacity: 0.6;
+      
+      }
+    }
+
+    .animate-flicker {
+      animation: flicker 3s infinite;
+    }
   .animate-flicker {
-    animation: flicker 2.7s infinite steps(2, end);
+    animation: flicker 3s infinite steps(2, end);
   }
 }
