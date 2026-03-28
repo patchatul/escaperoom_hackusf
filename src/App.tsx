@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './frontend/Login';
-import Escaperoom from './frontend/Escaperoom';
+import EscapeRoom from './frontend/EscapeRoom';
 import LeaderBoard from './frontend/LeaderBoard';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/escaperoom" element={<Escaperoom />} />
+        <Route path="/escaperoom" element={<EscapeRoom />} />
         
         <Route path="/leaderboard" element={<LeaderBoard />} />
       </Routes>

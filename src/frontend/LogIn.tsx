@@ -4,7 +4,7 @@ import { useState } from "react";
 //login and signup form (input fields, buttons, remember me, forgot password)
 //click submit button sends data to backend, backend checks if credentials are correct
 //if correct then redirect to escaperoom, if incorrect then show error message
-function Login() {
+function LogIn() {
   const navigate = useNavigate();
   const handleClick = (e: any) => {
     e.preventDefault();
@@ -16,6 +16,7 @@ function Login() {
   const [isSignup, setIsSignup] = useState(false);
   return (
     <div className="min-h-screen flex items-center justify-center">
+        
       <div className="relative w-225">
         {/* Computer image */}
         <img src={computer} className="w-full" />
@@ -72,4 +73,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LogIn;
