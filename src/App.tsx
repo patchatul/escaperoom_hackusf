@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './frontend/Login';
+import Login from './frontend/LogIn';
 import EscapeRoom from './frontend/EscapeRoom';
 import LeaderBoard from './frontend/LeaderBoard';
 
