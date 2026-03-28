@@ -19,3 +19,38 @@ You can deploy your new Vite project with a single command from your terminal us
 ```shell
 $ vercel
 ```
+1. create your own branch
+2. git fetch
+3. git branch -r
+4. git checkout -b pat origin/pat or git checkout pat
+5. git pull
+npm install
+
+File Structure
+```
+└── 📁hackusf
+    └── 📁public
+    └── 📁src
+        └── 📁assets
+        └── 📁frontend
+            ├── Ending.tsx
+            ├── EscapeRoom.tsx
+            ├── LeaderBoard.tsx
+            ├── LogIn.tsx
+            ├── QuestionPopUp.tsx
+            ├── ThreeDRoom.tsx
+        ├── App.tsx
+        ├── index.css
+        ├── main.tsx
+        ├── vite-env.d.ts
+    ├── .gitignore
+    ├── eslint.config.js
+    ├── index.html
+    ├── package-lock.json
+    ├── package.json
+    ├── README.md
+    ├── tsconfig.app.json
+    ├── tsconfig.json
+    ├── tsconfig.node.json
+    └── vite.config.ts
+```
