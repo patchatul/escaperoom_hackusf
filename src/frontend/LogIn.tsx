@@ -1,14 +1,16 @@
 import computer from "../../public/pics/computer.png";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 //login and signup form (input fields, buttons, remember me, forgot password)
 //click submit button sends data to backend, backend checks if credentials are correct
 //if correct then redirect to escaperoom, if incorrect then show error message
 function LogIn() {
   const navigate = useNavigate();
+  const usernameRef = useRef<HTMLInputElement>(null);
   const handleClick = (e: any) => {
     e.preventDefault();
-    navigate("/escaperoom");
+    const username = usernameRef.current?.value || "Anonymous";
+    navigate("/escaperoom", { state: { username } });
   };
   const handleSignup = () => {
     setIsSignup(!isSignup);
@@ -19,27 +21,27 @@ function LogIn() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setZoom(true);
-    }, 2500); // 2.5 seconds after page load
+    }, 1500); // 1.5 seconds after page load
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-         {/* Flicker light layer */}
+      {/* Flicker light layer */}
       <div className="absolute inset-0 bg-gray-800/10 flicker-bg pointer-events-none"></div>
 
       {/* Static noise layer */}
       <div className="absolute inset-0 static-bg pointer-events-none mix-blend-overlay"></div>
 
-<div
+      <div
         className={` relative w-225
           transition-transform duration-1500 ease-out
           ${zoom ? "scale-100" : "scale-60"}
         `}
       >
         {/* Computer image */}
- <img src={computer} className="w-full" />
+        <img src={computer} className="w-full" />
         {/* SCREEN AREA (overlay) */}
         <div
           className="absolute top-[16%] left-[16%] w-[68%] h-[42%] 
@@ -49,12 +51,19 @@ function LogIn() {
             <h1 className="animate-flicker">ESCAPE ROOM</h1>
           </div>
           <div>
-            <form className="flex flex-col items-center justify-center "
-            onSubmit={handleClick}>
+            <form
+              className="flex flex-col items-center justify-center "
+              onSubmit={handleClick}
+            >
               <label htmlFor="username">
                 <b>Username</b>
               </label>
-              <input type="email" placeholder="peduncle" name="username" />
+              <input
+                ref={usernameRef}
+                type="text"
+                placeholder="peduncle"
+                name="username"
+              />
               {isSignup && (
                 <>
                   <label>Email</label>
@@ -88,8 +97,7 @@ function LogIn() {
           </div>
         </div>
       </div>
-      </div>
-    
+    </div>
   );
 }
 
