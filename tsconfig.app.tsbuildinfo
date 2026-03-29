@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/frontend/ending.tsx","./src/frontend/escaperoom.tsx","./src/frontend/escaperoom2.tsx","./src/frontend/leaderboard.tsx","./src/frontend/login.tsx","./src/frontend/quizpopup.tsx","./src/frontend/threedroom.tsx"],"errors":true,"version":"5.9.3"}
