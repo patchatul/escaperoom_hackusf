@@ -1,11 +1,9 @@
 import ModelViewer from "./ThreeDRoom";
 
 function EscapeRoom2() {
-  
   return (
     <div>
-      
-      <ModelViewer />
+      <ModelViewer onFinish={() => {}} />
     </div>
   );
 }
