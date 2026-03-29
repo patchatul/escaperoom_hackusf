@@ -68,8 +68,10 @@ function QuizPopUp({
           background: "rgba(0,0,0,0.6)",
         }}
       >
-        {/* Card — original Tailwind classes kept exactly */}
-        <div className="relative bg-black/80 text-white p-6 rounded-xl w-75 space-y-4 border border-white/20">
+        {/* Card — dynamic width based on question length */}
+        <div
+          className={`relative bg-black/80 text-white p-6 rounded-xl border border-white/20 ${question && question.length > 50 ? "w-200" : "w-100"} space-y-4`}
+        >
           {/* Progress indicator */}
           <div className="flex justify-between items-center text-xs text-white/50">
             <span>Player: {username || "Anonymous"}</span>
@@ -87,13 +89,15 @@ function QuizPopUp({
 
           <h2 className="text-md font-bold text-center">QUIZ QUESTION</h2>
 
-          <p className="text-sm">{question ?? "What do you see?"}</p>
+          <p className="text-sm" style={{ whiteSpace: "pre-line" }}>
+            {question ?? "What do you see?"}
+          </p>
 
           <input
             ref={inputRef}
             type="text"
-            className="w-full p-2 rounded text-black bg-white/10 border border-white/20"
-            placeholder="Type your answer..."
+            className="w-100 p-2 rounded text-black bg-white/10 border border-white/20"
+            placeholder="Type your answer (number)"
             onKeyDown={(e) => {
               if (e.key === "Enter") handleSubmit();
             }}
@@ -105,14 +109,14 @@ function QuizPopUp({
               Wrong answer. Try again.
             </p>
           )}
-
+<div>
           <button
             onClick={handleSubmit}
-            className="w-full bg-green-500 hover:bg-green-600 text-black font-bold py-2 rounded"
+            className="w-50 bg-green-500 hover:bg-green-600 text-black font-bold py-2 rounded"
           >
             Submit
           </button>
-        </div>
+        </div></div>
       </div>
     </>
   );

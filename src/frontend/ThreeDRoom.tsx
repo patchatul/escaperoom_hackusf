@@ -5,26 +5,65 @@ import { useEffect, useRef, useState, useMemo } from "react";
 import QuizPopUp from "./QuizPopUp.tsx";
 
 // ─── Quiz data — 5 questions, one per object ───────────────────────────────────
+
+// Correct answers (lowercase for comparison)
+
+// Python debugging questions
 const QUIZ_QUESTIONS = [
   {
     id: "book",
-    question: "What is written on the first page of the old book?",
+    question:
+      "Which line causes the IndexError in this code?\n\n" +
+      "(1) numbers = [1, 2, 3, 4]\n" +
+      "(2) for i in range(5):\n" +
+      "(3)     print(numbers[i])",
   },
-  { id: "keypad", question: "What 4-digit code is carved into the wall?" },
-  { id: "tv", question: "What face appears on the TV screen?" },
-  { id: "skeleton", question: "How many bones are in the adult human body?" },
-  { id: "ghost", question: "What year is engraved on the ghost's locket?" },
+
+  {
+    id: "keypad",
+    question:
+      "Which line causes the TypeError in this code?\n\n" +
+      "(1) age = 20\n" +
+      "(2) message = \"You are \" + age + \" years old\"\n" +
+      "(3) print(message)",
+  },
+
+  {
+    id: "tv",
+    question:
+      "Which line contains the variable name typo?\n\n" +
+      "(1) total = 10\n" +
+      "(2) tota = total + 5\n" +
+      "(3) print(total)",
+  },
+
+  {
+    id: "skeleton",
+    question:
+      "Which line is missing a return statement?\n\n" +
+      "(1) def add(a, b):\n" +
+      "(2)     result = a + b\n" +
+      "(3) print(add(3, 4))",
+  },
+
+  {
+    id: "ghost",
+   question:
+      "Which line is missing a return statement?\n\n" +
+      "(1) def add(a, b):\n" +
+      "(2)     result = a + b\n" +
+      "(3) print(add(3, 4))",
+  },
+
 ];
 
-// Correct answers (lowercase for comparison)
 const CORRECT_ANSWERS: Record<string, string> = {
-  book: "death",
-  keypad: "1313",
-  tv: "yours",
-  skeleton: "206",
-  ghost: "1887",
+  book: "2",
+  keypad: "2",
+  tv: "2",
+  skeleton: "2",
+  ghost: "2",
 };
-
 // ─── Floating "?" marker — always visible, bobs up and down ───────────────────
 function FloatingMarker({
   position,
