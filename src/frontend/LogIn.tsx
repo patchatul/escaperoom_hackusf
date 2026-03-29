@@ -25,6 +25,7 @@ function LogIn() {
 
     return () => clearTimeout(timer);
   }, []);
+  // Audio is now handled in App.tsx for the entire game
 
   return (
     <div className="min-h-screen flex items-center justify-center">
