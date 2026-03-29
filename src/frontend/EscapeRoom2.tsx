@@ -1,5 +1,4 @@
 import ModelViewer from "./ThreeDRoom";
-import { useEffect, useState } from "react";
 
 function EscapeRoom2() {
   

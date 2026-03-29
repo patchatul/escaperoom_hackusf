@@ -11,7 +11,7 @@ const controls = [
 function EscapeRoom() {
   const [showPopup, setShowPopup] = useState(true);
   const [timerStart, setTimerStart] = useState(false);
-const totalTime = 120; //10 mins 600
+const totalTime = 600; //10 mins 600
   const [timeLeft, setTimeLeft] = useState(totalTime);
   // timer runs ONLY when timerStart is true
 useEffect(() => {
@@ -79,11 +79,12 @@ useEffect(() => {
               Solve 5 Questions in 10 Minutes
             </h2>
 
-            <div className="flex items-center justify-center gap-1 ">
+            <div className="grid grid-cols-3  gap-1 ">
               {controls.map((c, i) => (
-                <div key={i} className="  bg-[#e8d8b0]/30 rounded-lg ">
+                <div key={i} className=" bg-[#e8d8b0]/30 rounded-lg 
+                ">
                   <p className="text-[#2de200] ">
-                    <span className="text-2xl ">{c.key}</span>
+                    <span className="text-xl">{c.key}</span>
                     <br />
                     <span className="text-[#e8d8b0] ">{c.action}</span>
                   </p>
@@ -92,7 +93,7 @@ useEffect(() => {
             </div>
 
             <button onClick={handleStart}
-            className="w-[400px] py-2 bg-[#1c009a] hover:bg-[#25c400] font-bold rounded-lg transition">
+            className="w-100 py-2  font-bold rounded-lg transition">
               LET'S GO
             </button>
           </div>
@@ -105,7 +106,7 @@ useEffect(() => {
              flex items-center gap-4"
         >
           <p className="font-bold text-2xl text-white float-start">{time}</p>
-          <div className="w-[600px] h-5 border-2 border-red rounded overflow-hidden">
+          <div className="w-150 h-5 border-2 border-red rounded overflow-hidden">
             <div
               className="bg-red-700 h-full rounded transition-all duration-100"
               style={{ width: `${progressPercent}%` }}

@@ -1,6 +1,6 @@
 import computer from "../../public/pics/computer.png";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 //login and signup form (input fields, buttons, remember me, forgot password)
 //click submit button sends data to backend, backend checks if credentials are correct
 //if correct then redirect to escaperoom, if incorrect then show error message
@@ -14,13 +14,32 @@ function LogIn() {
     setIsSignup(!isSignup);
   };
   const [isSignup, setIsSignup] = useState(false);
+  const [zoom, setZoom] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setZoom(true);
+    }, 2500); // 2.5 seconds after page load
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="min-h-screen flex items-center justify-center">
-        
-      <div className="relative w-225">
-        {/* Computer image */}
-        <img src={computer} className="w-full" />
+         {/* Flicker light layer */}
+      <div className="absolute inset-0 bg-gray-800/10 flicker-bg pointer-events-none"></div>
 
+      {/* Static noise layer */}
+      <div className="absolute inset-0 static-bg pointer-events-none mix-blend-overlay"></div>
+
+<div
+        className={` relative w-225
+          transition-transform duration-1500 ease-out
+          ${zoom ? "scale-100" : "scale-60"}
+        `}
+      >
+        {/* Computer image */}
+ <img src={computer} className="w-full" />
         {/* SCREEN AREA (overlay) */}
         <div
           className="absolute top-[16%] left-[16%] w-[68%] h-[42%] 
@@ -69,7 +88,8 @@ function LogIn() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    
   );
 }
 

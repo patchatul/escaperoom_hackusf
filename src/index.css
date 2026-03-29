@@ -3,13 +3,22 @@
 @theme {
   --red: #b80814;
   --green: #0e8c07;
-  --beige: #f6d88e;
-  --dot-color: #7aff7a;        /* eerie green glow */
-  --flicker-strength: 0.12;
+  --beige: #f6d88e;    
 }
 :root {
   font-family: 'Nosifer', 'Press Start 2P',Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   background-color: #000;
+  ::-webkit-scrollbar {
+  width: 8px; /* Set smaller width */
+}
+::-webkit-scrollbar-track {
+  background: #888;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: #474747;
+  border-radius: 4px;
+}
 }
 body {
   font-family:'Press Start 2P';
@@ -77,6 +86,7 @@ input{
 input:hover, input:active{
   box-shadow: 1px 1px 10px 2px #2de200;
 }
+
 @layer utilities {
    
    @keyframes flicker {
@@ -96,7 +106,31 @@ input:hover, input:active{
     .animate-flicker {
       animation: flicker 3s infinite;
     }
-  .animate-flicker {
-    animation: flicker 3s infinite steps(2, end);
-  }
+    @keyframes bg_flicker {
+  0% { opacity: 0.9; }
+  5% { opacity: 0.4; }
+  10% { opacity: 0.8; }
+  15% { opacity: 0.3; }
+  20% { opacity: 0.9; }
+  25% { opacity: 0.5; }
+  30% { opacity: 0.85; }
+  35% { opacity: 0.2; }
+  40% { opacity: 0.9; }
+  100% { opacity: 0.7; }
+}
+
+@keyframes staticNoise {
+  0% { background-position: 0 0; }
+  100% { background-position: 100% 100%; }
+}
+
+.flicker-bg {
+  animation: flicker 2.5s infinite;
+}
+
+.static-bg {
+  background-image: url("../public/pics/bg_static_texture.webp");
+  opacity: 0.15;
+  animation: staticNoise 0.8s steps(2) infinite;
+}
 }
